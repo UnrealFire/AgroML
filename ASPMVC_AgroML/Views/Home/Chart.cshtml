@@ -1,0 +1,33 @@
+﻿@model ASPMVC_AgroML.Models.Forecast
+
+@{
+    var x = new List<string>()
+    {
+        "Нет риска болезни",
+        "Бурая ржавчина",
+        "Пыльная головня",
+        "Карликовая головня",
+        "Черный бактериоз пшеницы",
+        "Офиоболезная корневая гниль"
+    };
+
+    var y = new List<double>()
+    {
+        Model.None,
+        Model.BurRz,
+        Model.PilnGol,
+        Model.KarlGol,
+        Model.ChernBakt,
+        Model.KornGnil
+
+    };
+
+    Chart theChart = new Chart(width: 300, height: 200)
+        .AddSeries(
+            chartType: "bar",
+            legend: "Income",
+            xValue: x,
+            yValues: y);
+
+    theChart.ToWebImage().Write();
+}

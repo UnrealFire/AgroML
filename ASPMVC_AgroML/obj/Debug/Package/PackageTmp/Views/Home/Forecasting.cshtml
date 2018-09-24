@@ -1,0 +1,60 @@
+﻿@model ASPMVC_AgroML.Models.Forecast
+
+@{
+    ViewBag.Title = "Презсказание риска заболеваний";
+}
+
+<div class="jumbotron">
+    <h1><center>Прогнозирование рисков возникновения заболеваний у зерновой культуры пшеницы</center></h1>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Ввод данных метеоусловий</h2>
+        <form method="post" action="/Home/Forecasting">
+            <input type="hidden" value="@ViewBag.Forecast" name="Forecast" />
+            <table>
+                <tr><td><p>Введите температуру:</p></td>
+                    <td><input type="text" name="Temp" /> </td></tr>
+                <tr><td><p>Введите влажность:</p></td>
+                    <td><input type="text" name="Hum" /> </td></tr>
+                <tr><td><input type="submit" value="Спрогнозировать" /> </td>
+                    <td></td></tr>
+            </table>
+        </form>
+    </div>
+    <div class="col-md-4">
+        <h2>Прогноз в таблице</h2>
+        <table border="2">
+            <tr>
+                <td>Нет риска болезни</td>
+                <td>@Math.Round(Model.None, 2).ToString()%</td>
+            </tr>
+            <tr>
+                <td>Бурая ржавчина</td>
+                <td>@Math.Round(Model.BurRz, 2).ToString()%</td>
+            </tr>
+            <tr>
+                <td>Пыльная головня</td>
+                <td>@Math.Round(Model.PilnGol, 2).ToString()%</td>
+            </tr>
+            <tr>
+                <td>Карликовая головня</td>
+                <td>@Math.Round(Model.KarlGol, 2).ToString()%</td>
+            </tr>
+            <tr>
+                <td>Черный бактериоз пшеницы</td>
+                <td>@Math.Round(Model.ChernBakt, 2).ToString()%</td>
+            </tr>
+            <tr>
+                <td>Офиоболезная корневая гниль</td>
+                <td>@Math.Round(Model.KornGnil, 2).ToString()%</td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-md-4">
+        <h2>Прогноз в диаграмме</h2>
+        <img src="/Content/chart.png" alt="Chart" />
+    </div>
+</div>
+
